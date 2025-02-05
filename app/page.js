@@ -4,9 +4,9 @@ import { useState } from "react";
 
 export default function Home() {
    // Aqui entra o javascript normal 
-  let [ carrinho, alteraCarrinho ] = useState(0); //toda vez
-  let [ precoProduto, alteraPrecoProduto ] = useState(25);
-  let [ valorTotal, alteraValorTotal ] = useState( 0 );
+  const [ carrinho, alteraCarrinho ] = useState(0); //toda vez
+  const [ precoProduto, alteraPrecoProduto ] = useState(25);
+  const [ valorTotal, alteraValorTotal ] = useState( 0 );
 
   function manipulaCarrinho( adicionar ){
     if(adicionar == true){
@@ -15,8 +15,6 @@ export default function Home() {
       alteraCarrinho( carrinho - 1 )
     }
   }
-
-  alteraValorTotal( carrinho * precoProduto )
   
   function limparCarrinho(){
     alteraCarrinho(carrinho = 0)
