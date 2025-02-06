@@ -32,6 +32,10 @@ function Login() {
                         <button className="bg-black text-white p-3 mt-5">Cadastrar usuário</button>
                         <p>Digite o nome:</p>
                         <input className="border-2"/>
+
+                        <br/>
+
+                        <button className="p-3 mt-5 bg-lime-500 text-white">Salvar</button>
                     </div>
 
                 :
