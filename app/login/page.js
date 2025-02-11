@@ -10,7 +10,7 @@ function Login() {
 
         if( admin == true ){
             alteraAdmin(false)
-        }else{
+        }else{   
             alteraAdmin(true)
         }
     }
