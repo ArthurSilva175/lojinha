@@ -22,7 +22,7 @@ function Cadastro () {
 
             <br/>
 
-            <button onClick={()=> salvar() } className="p-3 mt-5 bg-lime-500 text-white">Salvar</button>
+            <button onClick={ ()=> salvar() } className="p-3 mt-5 bg-lime-500 text-white">Salvar</button>
     
 
         </div>
