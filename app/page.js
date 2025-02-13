@@ -1,5 +1,4 @@
 'use client'
-import { Cairo } from "next/font/google";
 import { useState } from "react";
 
 export default function Home() {
@@ -7,6 +6,10 @@ export default function Home() {
   const [ carrinho, alteraCarrinho ] = useState(0); //toda vez
   const [ precoProduto, alteraPrecoProduto ] = useState(25);
   const [ valorTotal, alteraValorTotal ] = useState( 0 );
+
+  const [ tamanhos, alteraTamho ] = useState( ["P", "M", "G"] );
+  const [ cores, alteraCores ] = useState([ "Azul", "Verde", "Vermelho" ]);
+  const [ entrega, alteraEntrega ] = useState([ "PAC", "Sedex", "Retirada" ])
 
   function manipulaCarrinho( adicionar ){
     if(adicionar == true){
@@ -55,10 +58,35 @@ export default function Home() {
       <div className="border bg-sky-700 w-fit p-2 text-center text-white">
         <img className="" src="https://placehold.co/200"/>
         <h3 className="text-lg text-lime-200 font-bold">Produto modelo</h3>
+
+        <p>Tamanhos: { tamanhos.map( (iet)=> <span>{iet},</span> ) } </p>
+        
+        <p>Cores:</p>
+        <ul>
+          {cores.map ( (i)=> <li className="border">{i}</li> )}
+        </ul>
+
+        <p>Entrega:
+        <ul>
+          {
+            entrega.map ( (i)=> 
+              <button className="bg-gray-300 ml-2 text-black p-2">{i}</button> )
+          }
+        </ul>
+        </p>
+
+
         <p>R$ {precoProduto}</p>
         <button onClick={()=>manipulaCarrinho(true)} className="bg-lime-400 text-black mt-5 p-3">Adicionar ao carrinho</button>
-        <br/>
-        <button onClick={()=>manipulaCarrinho(false)} className="bg-red-400 text-black mt-5 p-3">Remover carrinho</button>
+        
+
+         {
+            carrinho > 0 ?
+              <button onClick={()=>manipulaCarrinho(false)} className="bg-red-400 text-black mt-5 p-3">Remover carrinho</button>
+            :
+
+              <div></div>
+         }
       </div>
     
     </div>

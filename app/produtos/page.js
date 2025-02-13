@@ -4,11 +4,23 @@ import Cadastro from "../cadastro/page";
 
     function Produtos () {
 
+        // const [ produto, alteraProduto ] = useState({})
+
+        const [ produtos, alteraProdutos ] = useState([{
+            nome: "szuszuszu",
+            preco: "50,00",
+            quantidade: 60
+        },{
+            nome: "szuszuszu 2",
+            preco: "100,00",
+            quantidade: 120
+        }]);
+
         const [ nome, alteraNome ] = useState("")
         const [ preco, alteraPreco ] = useState("")
         const [ quantidade, alteraQuantidade ] = useState("")
 
-        const [ mostrarListagem, alteraMostraListagem ] = useState(false)
+        const [ mostrarListagem, alteraMostraListagem ] = useState(true)
         const [ mostrarCadastro, alteraMostraCadastro ] = useState(true)
 
         function alteraExibicao(tela){
@@ -24,9 +36,16 @@ import Cadastro from "../cadastro/page";
         
     function salvar(e){
         e.preventDefault();
-        console.log(nome)
-        console.log(preco)
-        console.log(quantidade)
+        const objeto = {
+            nome: nome,
+            preco: preco,
+            quantidade: quantidade,
+            data: Date()
+        }
+        alteraProdutos([...produtos, objeto]);
+        // console.log(nome)
+        // console.log(preco)
+        // console.log(quantidade)
     }
 
 
@@ -51,36 +70,39 @@ import Cadastro from "../cadastro/page";
 
                     {
                         mostrarCadastro == true &&
+
+
                         <div className="border p-5">
                             <h2 className="font-bold mb-2">Cadastro de produtos</h2>
                             
                             <form onSubmit={ (e)=> salvar(e) }>
 
-                            <label className="mb-4">
-                                Digite o nome:
+                                <label className="mb-4">
+                                    Digite o nome:
+                                    <br/>
+                                    <input onChange={ (e)=> alteraNome(e.target.value) } className="outline"/>
+                                </label>
                                 <br/>
-                                <input onChange={ (e)=> alteraNome(e.target.value) } className="outline"/>
-                            </label>
-                            <br/>
 
-                            <label className="mb-4">
-                                Digite o preço:
+                                <label className="mb-4">
+                                    Digite o preço:
+                                    <br/>
+                                    <input onChange={ (e)=> alteraPreco(e.target.value) } className="outline"/>
+                                </label>
                                 <br/>
-                                <input onChange={ (e)=> alteraPreco(e.target.value) } className="outline"/>
-                            </label>
-                            <br/>
 
-                            <label className="mb-4">
-                                Digite a quantidade:
+                                <label className="mb-4">
+                                    Digite a quantidade:
+                                    <br/>
+                                    <input onChange={ (e)=> alteraQuantidade(e.target.value) } className="outline"/>
+                                </label>
                                 <br/>
-                                <input onChange={ (e)=> alteraQuantidade(e.target.value) } className="outline"/>
-                            </label>
-                            <br/>
 
-                            <button className="bg-gray-300 mt-5 p-5">Salvar</button>
+                                <button className="bg-gray-300 mt-5 p-5">Salvar</button>
 
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+
 
                     }
                     
@@ -95,9 +117,14 @@ import Cadastro from "../cadastro/page";
                     <div className="border p-5">
                     <h2 className="font-bold mb-5">Listagem de produtos</h2>
                     <ul>
-                        <li>Produto 1</li>
-                        <li>Produto 2</li>
-                        <li>Produto 3</li>
+                        { produtos.map ((i)=> 
+                            <li>
+                                {i.nome} - R$ {i.preco} - {i.quantidade} itens
+                            </li>
+                            ) 
+                        
+                        }
+                        
                     </ul>
 
                 </div>
